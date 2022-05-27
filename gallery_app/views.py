@@ -4,6 +4,4 @@ from django.shortcuts import render
 
 # Create your views here.
 def image(request):
-  # return HttpResponse('trial')
-
   return render(request,'gallery_app/index.html')
