@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 class Images(models.Model):
   image_name=models.CharField(max_length=30)
-  image_description=models.TextField()
-  
+  image_description=models.CharField(max_length=200)
+  gallery_image = models.ImageField(upload_to = 'articles/', unique=True)
 
 
