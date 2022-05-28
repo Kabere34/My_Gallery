@@ -27,7 +27,7 @@
           >
         </li>
       </ul>
-      <form class="d-flex input-group w-auto">
+      <form role="search" action="{% url 'search_results' %}" class="d-flex input-group w-auto">
         <input
           type="search"
           class="form-control"
@@ -36,7 +36,7 @@
         />
         <button
           class="btn btn-outline-primary"
-          type="button"
+          type="submit"
           data-mdb-ripple-color="dark"
         >
           Search
