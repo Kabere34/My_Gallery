@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 
 # Create your models here.
@@ -18,16 +19,28 @@ class Images(models.Model):
   image_category = models.ForeignKey(Category,on_delete=models.CASCADE, blank=True, null=True)
   image_location = models.ForeignKey(Location,on_delete=models.CASCADE, blank=True, null=True)
 
+  def __str__(self):
+    return self.image_name
+
   def save_image(self):
     self.save()
+
+
   @classmethod
   def get_all_images(cls):
     images=cls.objects.all()
     return images
+
   @classmethod
   def search_by_category(cls,search_term):
-      images = cls.objects.filter(image_category__icontains=search_term)
+      images = cls.objects.filter(image_category__name__icontains=search_term)
       return images
+
+  @classmethod
+  def view_image_by_id(cls,id):
+    image=cls.objects.get(id=id)
+    return image
+
 
 
 

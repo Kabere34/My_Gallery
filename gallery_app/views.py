@@ -19,3 +19,7 @@ def search_results(request):
     message = "You haven't searched for any term"
     return render(request,'gallery_app/search.html',{'message':message})
 
+# def view_image(request,id):
+#   product=Images.objects.filter(id=id).first()
+#   return render(request,'')
+

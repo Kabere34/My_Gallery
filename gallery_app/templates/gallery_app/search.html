@@ -1,7 +1,5 @@
 {% extends 'gallery_app/base.html'%} {%block content%}
 
-<h1 class="bg-info">welcome</h1>
-
 <div class="container-fluid gallery-section mt-1">
   <h2 class="text-center"><span>Our Gallery</span></h2>
   <div class="container-fluid">
@@ -16,7 +14,6 @@
               style="height: 15rem"
               alt=""
             />
-            <p>{{image.image_category}}</p>
           </div>
         </div>
         {% endfor %}
@@ -24,11 +21,4 @@
     </div>
   </div>
 </div>
-
-<!-- modal -->
-
-
-<!-- Modal -->
-
-
-{% endblock %}
+{%endblock%}
