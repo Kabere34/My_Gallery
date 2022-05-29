@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from .models import Images
+from .models import Images,Location,Category
 
 
 # Create your views here.
@@ -19,7 +19,12 @@ def search_results(request):
     message = "You haven't searched for any term"
     return render(request,'gallery_app/search.html',{'message':message})
 
-# def view_image(request,id):
-#   product=Images.objects.filter(id=id).first()
-#   return render(request,'')
+def location(request, location_id):
+  locations= Location.objects.all()
+  selected_location=Location.objects.get(id=location_id)
+  images=Images.objects.filter(image_location=selected_location.id)
+  return render(request,'gallery_app/location.html',{"location":selected_location,"locations":locations,"images":images})
+
+
+
 

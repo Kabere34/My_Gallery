@@ -4,11 +4,14 @@ from django.db import models
 # Create your models here.
 class Location(models.Model):
   name = models.CharField(max_length =30)
+
   def __str__(self):
     return self.name
 
+
 class Category(models.Model):
   name = models.CharField(max_length =30)
+
   def __str__(self):
     return self.name
 
@@ -34,6 +37,12 @@ class Images(models.Model):
   @classmethod
   def search_by_category(cls,search_term):
       images = cls.objects.filter(image_category__name__icontains=search_term)
+      return images
+
+  @classmethod
+  def search_by_location(cls,search_term):
+      location = Location.objects.get(name=search_term)
+      images=cls.objects.filter(location =location)
       return images
 
   @classmethod

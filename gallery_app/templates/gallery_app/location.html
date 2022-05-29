@@ -1,0 +1,31 @@
+{% extends 'gallery_app/base.html'%}
+{%block content%}
+{{block.super}}
+<div class="scrollmenu">
+  {%for location in locations %}
+  <a href="{% url 'location' location.id %}">{{location}}</a>
+  {% endfor %}
+</div>
+<div><p>{{location.name}}</p></div>
+
+<div class="container-fluid">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for image in images %}
+      <div class="col">
+        <div class="card">
+          <img
+            src="{{image.gallery_image.url}}"
+            class="card-img-top img-responsive"
+            style="height: 15rem"
+            alt=""
+          />
+          <p>{{image.image_category}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{%endblock%}

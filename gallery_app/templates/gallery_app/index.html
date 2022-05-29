@@ -12,23 +12,32 @@
           <div class="card">
             <img
               src="{{image.gallery_image.url}}"
+              data-mdb-toggle="modal" data-mdb-target="#{{image.id}}"
               class="card-img-top img-responsive"
               style="height: 15rem"
               alt=""
             />
             <p>{{image.image_category}}</p>
           </div>
+          <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#staticBackdrop">
+            Launch static backdrop modal
+          </button>
         </div>
+
+
+        <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
         {% endfor %}
       </div>
+
     </div>
   </div>
 </div>
 
-<!-- modal -->
-
-
-<!-- Modal -->
 
 
 {% endblock %}
