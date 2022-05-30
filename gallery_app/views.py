@@ -6,7 +6,8 @@ from .models import Images,Location,Category
 # Create your views here.
 def homepage(request):
   images=Images.get_all_images()
-  return render(request,'gallery_app/index.html',{'images':images})
+  locations= Location.objects.all()
+  return render(request,'gallery_app/index.html',{'images':images, "locations":locations})
 
 def search_results(request):
   if 'image' in request.GET and request.GET["image"]:
@@ -19,9 +20,9 @@ def search_results(request):
     message = "You haven't searched for any term"
     return render(request,'gallery_app/search.html',{'message':message})
 
-def location(request, location_id):
+def location(request, location):
   locations= Location.objects.all()
-  selected_location=Location.objects.get(id=location_id)
+  selected_location=Location.objects.get(id=location)
   images=Images.objects.filter(image_location=selected_location.id)
   return render(request,'gallery_app/location.html',{"location":selected_location,"locations":locations,"images":images})
 
