@@ -4,7 +4,9 @@
   <a href="{% url 'location' location.id %}">{{location}}</a>
   {% endfor %}
 </div>
-<div><p>{{location.name}}</p></div>
+<div>
+  <p>{{location.name}}</p>
+</div>
 <div class="container-fluid gallery-section mt-1">
   <h2 class="text-center"><span>My Gallery</span></h2>
   <div class="container-fluid">
@@ -17,11 +19,16 @@
             <img src="{{image.gallery_image.url}}" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
               class="card-img-top img-responsive" style="height: 15rem" alt="" />
             <p>{{image.image_category}}</p>
+
+            <button type="button" class="btn btn-primary"
+              onclick="copy_pin_link('{{ image.galllery_image.url }}'),myFunction()" id="copy_pin_link">copy link</button>
           </div>
 
         </div>
+        {% endfor %}
 
         <!-- Modal -->
+        {% for image in images %}
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
           aria-labelledby="#{{image.id}}" aria-hidden="true">
           <div class="modal-dialog">
@@ -31,6 +38,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+
                 <img src="{{image.gallery_image.url}}" style="height: 15rem" alt="">
                 <p>{{image.image_category}}</p>
               </div>
@@ -44,9 +52,17 @@
 
 
 
-        {% endfor %}
-      </div>
+        <script type="text/javascript">
+          function copy_pin_link(data) {
+            navigator.clipboard.writeText(window.location.origin + data)
+          }
+          function myFunction() {
+            alert("Link copied to clipboard! Paste in new browser window to view");
+          }
+        </script>
 
+      </div>
+      {% endfor %}
     </div>
   </div>
 </div>
