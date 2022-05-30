@@ -76,9 +76,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'gallery.wsgi.application'
 
 
-SECRET_KEY = config('SECRET_KEY')
 MODE=config("MODE", default="dev")
 DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY=config('SECRET_KEY')
 if config('MODE')=="dev":
    DATABASES = {
        'default': {
