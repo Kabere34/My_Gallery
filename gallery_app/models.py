@@ -33,6 +33,7 @@ class Images(models.Model):
   gallery_image = models.ImageField(upload_to = 'gallery/', null=True)
   image_category = models.ForeignKey(Category,on_delete=models.CASCADE, blank=True, null=True)
   image_location = models.ForeignKey(Location,on_delete=models.CASCADE, blank=True, null=True)
+  
 
   def save_images(self):
     self.save()
@@ -42,11 +43,6 @@ class Images(models.Model):
 
   def __str__(self):
     return self.image_name
-
-  # def test_Instance():
-
-
-
 
   @classmethod
   def get_all_images(cls):
