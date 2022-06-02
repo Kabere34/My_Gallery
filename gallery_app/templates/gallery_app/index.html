@@ -1,16 +1,38 @@
-{% extends 'gallery_app/base.html'%} {%block content%}
-<div class="scrollmenu">
-  LOCATIONS IMAGES WERE TAKEN:
-  {%for location in locations %}
-  <a href="{% url 'location' location.id %}">{{location}}</a>
+{% extends 'gallery_app/base.html'%}
+{%load static%}
+{%block content%}
+<div class="hero-section">
+  &#9829;
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>The Gallery</h1>
+      <p>Your go to site for free usable images</p>
+    <div class="scrollmenu">
+      Popular Locations:
+      {%for location in locations %}
+      <a href="{% url 'location' location.id %}"> <em>{{location}},</em></a>
+      {% endfor %}
+    </div>
+    </div>
+  <form role="search" action="{% url 'search_results' %}">
+    <input type="text"
+    id="index_input"
+    width="70%"
+    placeholder="Type query"
+    aria-label="Search"
+    name="image">
+  <button class="btn btn-outline-primary"
+  type="submit"
+  data-mdb-ripple-color="dark" id="input_btn">search</button></form>
 
-  {% endfor %}
 </div>
+</div>
+
 <div
   <p>{{location.name}}</p>
 </div>
 <div class="container-fluid gallery-section mt-1">
-  <h2 class="text-center"><span>My Gallery</span></h2>
+
   <div class="container-fluid">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -21,9 +43,6 @@
             <img src="{{image.gallery_image.url}}" data-toggle="modal" data-target="#{{image.id}}"
               class="card-img-top img-responsive" style="height: 20rem" alt="" />
             <p>{{image.image_category}}</p>
-
-            <button type="button" class="btn btn-primary"
-              onclick="copy_pin_link('{{ image.gallery_image.url }}'),myFunction()" id="copy_pin_link">copy link</button>
           </div>
 
         </div>
@@ -42,11 +61,14 @@
               <div class="modal-body">
 
                 <img src="{{image.gallery_image.url}}" style="height: 15rem" alt="">
-                <p>{{image.image_name}}</p>
+                <p>Name:{{image.image_name}}</p>
+                <p>Image category:{{image.image_category}}</p>
+                <p>Image description:{{image.image_description}}</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+                 <button type="button" class="btn btn-primary"
+              onclick="copy_pin_link('{{ image.gallery_image.url }}'),myFunction()" id="copy_pin_link">copy link</button>
               </div>
             </div>
           </div>
